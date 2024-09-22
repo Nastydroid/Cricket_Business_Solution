@@ -1,0 +1,22 @@
+<!--
+  @description       : 
+  @author            : mac_Spectre
+  @group             : 
+  @last modified on  : 09-05-2024
+  @last modified by  : mac_Spectre
+-->
+<template>
+    <template lwc:if={ready}>
+        <div id="display">
+            <diV>Name:{name}</diV>
+            <div>Description:{description}</div>
+            <lightning-badge label={category}></lightning-badge>
+            <lightning-badge label={material}></lightning-badge>
+            <div>Price:{price}</div>
+            <div><img src={pictureurl} alt={name} /></div>
+        </div>
+    </template>
+    <template lwc:else>
+        <div id="waiting">Loading...</div>
+    </template>
+</template>

@@ -1,0 +1,63 @@
+<!--
+  @description       : 
+  @author            : mac_Spectre
+  @group             : 
+  @last modified on  : 09-16-2024
+  @last modified by  : mac_Spectre
+-->
+<template>
+    <lightning-card title="Bill List">
+        <!-- Search Box -->
+        <div class="slds-p-horizontal_small">
+            <lightning-input 
+                label="Search by Accout Name" 
+                onchange={handleSearch} 
+                placeholder="Enter Account Name"></lightning-input>
+        </div>
+
+         <!-- Column Headers -->
+         <lightning-layout multiple-rows class="slds-text-align_center column-headers">
+            <lightning-layout-item size="4">
+                <p><strong>Invoice Number</strong></p>
+            </lightning-layout-item>
+            <lightning-layout-item size="4">
+                <p><strong>Balance</strong></p>
+            </lightning-layout-item>
+            <lightning-layout-item size="4">
+                <p><strong>Account Name</strong></p>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout separator="line"></lightning-layout>
+
+        <!-- Bills List -->
+        <template if:true={bills}>
+            <template for:each={bills} for:item="bill">
+                <lightning-layout key={bill.Id} multiple-rows>
+                    <lightning-layout-item size="4" class="slds-text-align_center">
+                        <p> {bill.Invoice_Number__c}</p>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="4" class="slds-text-align_center">
+                        <p>{bill.Balance__c}</p>
+                        </lightning-layout-item>
+                        <!-- Third Column: Account Name -->
+                    <lightning-layout-item size="4" class="slds-text-align_center" data-account-id={bill.Account__r.Id}>
+                        <p>
+                            <a href="javascript:void(0);" onclick={navigateToAccount}>
+                            {bill.Account__r.Name}
+                                </a>
+                                </p>
+                    </lightning-layout-item>
+
+                </lightning-layout>
+                <!-- Horizontal line with custom styling -->
+                <hr  key={billId} class="record-separator"/>
+                <!--<lightning-layout key={bill.Id} separator="line"></lightning-layout> -->
+                
+
+            </template>
+        </template>
+        <template if:true={error}>
+            <p>Error retrieving bills: {error.body.message}</p>
+        </template>
+    </lightning-card>
+</template>

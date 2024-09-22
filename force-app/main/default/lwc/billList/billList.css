@@ -1,0 +1,21 @@
+.column-headers {
+    background-color: #e2e2e2;
+
+    padding: 0.1rem 0;
+}
+
+.column-border {
+    border-right: 5px solid #010b1b;
+
+}
+
+.column-border:last-child {
+    border-right: none;
+    /* Remove the border for the last column */
+}
+
+.record-separator {
+    border: 0;
+    border-top: 1px solid #d8dde6;
+    margin: 10px 0;
+}
